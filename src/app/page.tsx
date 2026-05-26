@@ -79,6 +79,9 @@ export default function DashboardPage() {
           NET-ZERO SUPPLY CHAIN · SPACEHACK 2026
         </span>
         <span className="text-[10px] font-mono text-white/15">
+          Made with ❤️ by Apoorva Kumar
+        </span>
+        <span className="text-[10px] font-mono text-white/15">
           DATA: Maritime Industry Reports 2024–2026
         </span>
       </footer>
