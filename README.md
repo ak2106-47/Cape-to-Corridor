@@ -4,6 +4,10 @@ An interactive dashboard that models a solar-powered electric rail corridor as a
 
 When a maritime chokepoint like the Strait of Hormuz closes, container traffic is forced to detour ~6,000 nautical miles around southern Africa — adding weeks at sea and an estimated 41 million tonnes of extra CO₂ per year. **Cape to Corridor** visualizes that problem side by side with a proposed solution: a 2,200 km solar-powered electric rail line from Bahrain to Haifa that moves cargo in ~22 hours instead of ~35 days, at net-zero operational emissions.
 
+## About
+
+This project was built for **SpaceHack for Sustainability 2026**, a hackathon hosted at Arizona State University (ASU) focused on using technology to tackle real-world sustainability and climate challenges. Cape to Corridor was our response to the prompt: how do we cut the massive carbon cost of forced maritime reroutes when a global shipping chokepoint goes offline?
+
 ## Features
 
 - **Split "problem vs. solution" dashboard** comparing the shipping reroute against the rail corridor.
