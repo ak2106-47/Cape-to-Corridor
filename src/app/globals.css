@@ -1,0 +1,196 @@
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Design tokens                                                              */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --background: #030306;
+  --foreground: #d4d4dc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Base                                                                       */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), "Space Grotesk", system-ui, -apple-system, sans-serif;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Technical grid background pattern                                          */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.tech-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Monospace number display                                                    */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.font-data {
+  font-family: var(--font-mono), "JetBrains Mono", "Fira Code", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Scrollbar styling                                                          */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Center divider glow animation                                              */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@keyframes divider-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.06);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.12);
+  }
+}
+
+.divider-glow {
+  animation: divider-glow 3s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Leaflet overrides for dark theme                                           */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.leaflet-container {
+  background: #060609 !important;
+  font-family: var(--font-mono), monospace !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(6, 6, 12, 0.95) !important;
+  color: #d4d4dc !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(6, 6, 12, 0.95) !important;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Pulse animation for the VS badge                                           */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.5s ease-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Scanline animation for technical panels                                    */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.015) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Leaflet permanent tooltip styles for map labels                            */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.map-label-red,
+.map-label-green {
+  background: rgba(0, 0, 0, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 3px !important;
+  padding: 2px 6px !important;
+  font-size: 9px !important;
+  font-family: var(--font-mono), monospace !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.map-label-red {
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.map-label-green {
+  color: #6ee7b7 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.leaflet-tooltip-top::before,
+.leaflet-tooltip-bottom::before,
+.leaflet-tooltip-left::before,
+.leaflet-tooltip-right::before {
+  border-color: transparent !important;
+}
