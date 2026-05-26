@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cape to Corridor
 
-## Getting Started
+An interactive dashboard that models a solar-powered electric rail corridor as a net-zero alternative to high-emission shipping reroutes around the Cape of Good Hope.
 
-First, run the development server:
+When a maritime chokepoint like the Strait of Hormuz closes, container traffic is forced to detour ~6,000 nautical miles around southern Africa — adding weeks at sea and an estimated 41 million tonnes of extra CO₂ per year. **Cape to Corridor** visualizes that problem side by side with a proposed solution: a 2,200 km solar-powered electric rail line from Bahrain to Haifa that moves cargo in ~22 hours instead of ~35 days, at net-zero operational emissions.
+
+## Features
+
+- **Split "problem vs. solution" dashboard** comparing the shipping reroute against the rail corridor.
+- **Interactive route maps** (Leaflet) showing the Cape of Good Hope shipping detour and the Bahrain → Haifa rail corridor with solar farm stations.
+- **Live animated tickers and stat cards** for emissions, distance, transit time, and cost.
+- **Emissions trajectory chart** projecting monthly CO₂ under the reroute vs. the rail alternative.
+- **Historical chokepoint comparisons** — Suez 1956, Suez 1967, Red Sea 2024, and the modeled Hormuz 2026 crisis.
+
+## Key figures
+
+| Metric | Shipping reroute | Solar rail corridor |
+| --- | --- | --- |
+| Distance added per voyage | ~6,000 nm | 2,200 km route |
+| Transit time | ~35 days | ~22 hours |
+| Operational CO₂ | ~41 Mt/year extra | Net-zero (solar) |
+| Solar capacity | — | 5.5 GW |
+| Projected annual CO₂ savings | — | ~15.6 Mt |
+
+All figures are defined in `src/lib/constants.ts`, with inline source notes from 2024–2026 maritime industry reports.
+
+## Tech stack
+
+- **Next.js 16** (App Router) and **React 19**
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion** for animations
+- **Leaflet** / **react-leaflet** for the maps
+- **react-countup** for animated counters
+
+## Getting started
+
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout, fonts, and metadata
+│   ├── page.tsx            # Main dashboard page + footer
+│   └── globals.css         # Global styles
+├── components/dashboard/
+│   ├── header.tsx          # Top header bar
+│   ├── problem-panel.tsx   # Shipping-reroute (crisis) panel
+│   ├── solution-panel.tsx  # Rail corridor (solution) panel
+│   ├── route-map.tsx       # Cape of Good Hope shipping route map
+│   ├── panel-map.tsx       # Rail corridor map
+│   ├── emissions-chart.tsx # Monthly emissions projection chart
+│   ├── ticker.tsx          # Animated live ticker
+│   └── stat-card.tsx       # Reusable stat card
+└── lib/
+    ├── constants.ts        # All emission data, route geometry, and figures
+    └── utils.ts            # Helpers
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This app deploys to [Vercel](https://vercel.com) with zero configuration. Import the repository, accept the auto-detected Next.js settings, and deploy — every push to `main` triggers a new deployment.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ by Apoorva Kumar
