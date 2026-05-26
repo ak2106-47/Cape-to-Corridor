@@ -78,7 +78,7 @@ export default function DashboardPage() {
         <span className="text-[10px] font-mono text-white/20 tracking-wider">
           NET-ZERO SUPPLY CHAIN · SPACEHACK 2026
         </span>
-        <span className="text-[10px] font-mono text-white/15">
+        <span className="text-[10px] font-mono text-white/30">
           Made with ❤️ by Apoorva Kumar
         </span>
         <span className="text-[10px] font-mono text-white/15">
