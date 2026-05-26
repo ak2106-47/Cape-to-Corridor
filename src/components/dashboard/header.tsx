@@ -28,7 +28,7 @@ export function Header() {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3">
         <div className="h-4 w-px bg-white/15" />
         <span className="text-sm sm:text-lg font-bold uppercase tracking-[0.2em] text-white/50">
-          SpaceHack 2026
+          Cape to Corridor
         </span>
         <div className="h-4 w-px bg-white/15" />
       </div>
